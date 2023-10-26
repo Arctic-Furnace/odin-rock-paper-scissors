@@ -1,4 +1,4 @@
-console.log("Hello World!");
+console.log("Welcome to Rock, Paper, Scissors");
 
 function getComputerChoice(){
     let randomNumber = Math.floor((Math.random() * 3) + 1);
@@ -18,19 +18,53 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     if(playerSelection.toLowerCase() === "rock" && computerSelection === "Scissors" || playerSelection.toLowerCase() === "paper" && computerSelection === "Rock"  || playerSelection.toLowerCase() === "scissors" && computerSelection === "Paper")
     {
-        return "You Win! " + playerSelection + " beats " + computerSelection;
+        console.log("You Win! " + playerSelection + " beats " + computerSelection)
+        return "Win";
     }
     else if(playerSelection.toLowerCase() === "rock" && computerSelection === "Paper" || playerSelection.toLowerCase() === "paper" && computerSelection === "Scissors"  || playerSelection.toLowerCase() === "scissors" && computerSelection === "Rock")
     {
-        return "You Lose! " + computerSelection + " beats " + playerSelection;
+        console.log("You Lose! " + computerSelection + " beats " + playerSelection)
+        return "Lose";
+    }
+    else if(playerSelection.toLowerCase() === "rock" && computerSelection === "Rock" || playerSelection.toLowerCase() === "paper" && computerSelection === "Paper"  || playerSelection.toLowerCase() === "scissors" && computerSelection === "Scissors")
+    {
+        console.log("It's a draw");
+        return "Draw";
     }
     else
     {
-        return "Its a draw";
+        console.log("That's not a valid option");
+        return "Invalid";
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    for(let i = 1;i < 6;i++)
+    {
+        let playerSelection = prompt("Rock, Paper or Scissors?");
+        let computerSelection = getComputerChoice();
+        let outcome = playRound(playerSelection,computerSelection);
+        if(outcome === "Win")
+        {
+            playerScore++;
+        }
+        else if(outcome === "Lose")
+        {
+            computerScore++;
+        }
+        else
+        {
+            i--;
+        }
+    }
+    if(playerScore > computerScore){
+        console.log("You Win!");
+    }
+    else{
+        console.log("You Lose!");
+    }
+}
 
-console.log(playRound(playerSelection, computerSelection));
+game();
